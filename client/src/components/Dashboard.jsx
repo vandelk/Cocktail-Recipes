@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
 
 const Dashboard = (props) => {
     const [category, setCategory] = useState([]);
@@ -19,11 +20,15 @@ const Dashboard = (props) => {
     }
 
     return (
-        <div>
+        <div className='container-fluid d-flex row'>
             {category.map((drinkCategory) => {
                 return (
-                    <div key={drinkCategory.strCategory} onClick={ () => viewCat(drinkCategory.strCategory)}>
-                        <h1>{drinkCategory.strCategory}</h1>
+                    <div className='d-flex justify-content-between' key={drinkCategory.strCategory}>
+                        <Card onClick={ () => viewCat(drinkCategory.strCategory)}>
+                            <Card.Body>
+                                <h1>{drinkCategory.strCategory}</h1>
+                            </Card.Body>
+                        </Card>
                     </div>
                 )
             })}
