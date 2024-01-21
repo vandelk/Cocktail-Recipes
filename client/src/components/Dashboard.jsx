@@ -20,7 +20,7 @@ const Dashboard = (props) => {
     }
 
     return (
-        <div className='container-fluid d-flex row'>
+        <div className='container d-flex flex-wrap justify-content-around'>
             {category.map((drinkCategory) => {
                 return (
                     <div className='d-flex justify-content-between' key={drinkCategory.strCategory}>
