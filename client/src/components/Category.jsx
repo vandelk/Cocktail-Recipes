@@ -4,11 +4,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const Category = (props) => {
     const [catDrinks, setCatDrinks] = useState([]);
-    const { name } = useParams();
+    const { name, secondary } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${name}`)
+        axios.get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${name}` + (secondary ? `/${secondary}` : ""))
             .then( res => {
                 setCatDrinks(res.data.drinks)
             })
@@ -16,12 +16,13 @@ const Category = (props) => {
     },[]);
 
     const getDrink = (drinkName,drinkId) => {
-        navigate(`/categories/${name}/${drinkName}`, {state: {id: drinkId}});
+        navigate(`/${drinkName}`, {state: {id: drinkId}});
     }
 
     return (
         <div>
             <h1>{name}</h1>
+            <h2>{secondary}</h2>
             {catDrinks.map((eachDrink) => {
                 return (
                     <div key={eachDrink.idDrink} onClick={() => getDrink(eachDrink.strDrink,eachDrink.idDrink)}>

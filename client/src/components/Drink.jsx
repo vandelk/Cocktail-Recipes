@@ -14,11 +14,44 @@ const Drink = (props) => {
             .catch(err => console.log(err))
     }, []);
 
+    const ingredientList = () => {
+        let count = 1;
+        let ingred = "strIngredient1"
+        let measure = "strMeasure1"
+
+        const ingredList = [];
+        const measureList = [];
+
+        while(drink[ingred]) {
+            ingredList.push(drink[ingred]);
+            count++;
+            ingred = "strIngredient" + count
+        }
+        
+        return(
+            <div>
+                {ingredList.map((eachIng) => {
+                    return(
+                        <div key={eachIng}>
+                            <p>{eachIng}</p>
+                        </div>
+                    );
+                })}
+            </div>
+        );
+    }
+
     return (
         <div>
-            <h3>{drink.strDrink}</h3>
-            <img src={drink.strDrinkThumb} alt="drink thumbnail"/>
-            <h4>{drink.category}</h4>
+            <div>
+                <h3>{drink.strDrink}</h3>
+                <h4>{drink.category}</h4>
+                <img src={drink.strDrinkThumb} alt="drink thumbnail"/>
+            </div>
+            <hr/>
+            <h2>Ingredients</h2>
+            {ingredientList()}
+            <hr/>
             <h2>Instructions</h2>
             <hr/>
             <div>

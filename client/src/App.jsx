@@ -23,10 +23,11 @@ function App() {
           {/* DASHBOARD*/}
           <Route path="/categories" element={<Dashboard />} />
           <Route path="/categories/:name" element={<Category />} />
+          <Route path="/categories/:name/:secondary" element={<Category />} />
 
           <Route path="/ingredients" element={<Ingredient />} />
 
-          <Route path="/categories/:name/:drinkName" element={<Drink />} />
+          <Route path="/:drinkName" element={<Drink />} />
         </Routes>
       </div>
     </>
